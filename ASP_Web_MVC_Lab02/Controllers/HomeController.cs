@@ -1,5 +1,7 @@
 ﻿using ASP_Web_MVC.Models;
 using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Web.Mvc;
 
 namespace ASP_Web_MVC.Controllers
@@ -14,7 +16,10 @@ namespace ASP_Web_MVC.Controllers
             //string res = ExeEnum();
             //string res = ExeStruct();
             //string res = ExeFactorial(5);
-            string res = ExeTriangle();
+            //string res = ExeTriangle();
+            //string res = ExeCircle();
+            //string res = ExePolim();
+            string res = ExeCollection();
             return res;
         }
 
@@ -39,9 +44,7 @@ namespace ASP_Web_MVC.Controllers
             goldBankAccount.accBal = (decimal)3200.00;
             goldBankAccount.accNo = 123;
 
-            //string res = String.Format("Номер счета {0}, баланс {1}, тип {2}", goldBankAccount.accNo, goldBankAccount.accBal, goldBankAccount.accType);
             //1 - string res = String.Format("Информация о банковском счете: {0}", goldBankAccount);
-            //string res = $"Номер счета {accNo}, баланс {accBal}, тип {accYype}";
             //2 - string res = StudyCsharp.SetStatus(3);
             //3 - string res = StudyCsharp.ExeSwitch(StudyCsharp.SetStatus(3));
             string res = StudyCsharp.GetFunction(0, 9);
@@ -65,6 +68,51 @@ namespace ASP_Web_MVC.Controllers
             Triangle tr1 = new Triangle(3, 5, 6);
             string sq1 = String.Format("Площадь фигуры {0} равна: {1:0.##}", tr1.Name, tr1.Area);
             return sq1;
+        }
+
+        public string ExeCircle()
+        {
+            Circle cir1 = new Circle(3);
+            string sq = String.Format("Площадь фигуры {0} равна: {1:0.##}", cir1.Name, cir1.Area);
+            return sq;
+        }
+
+        public string ExePolim()
+        {
+            StringBuilder str = new StringBuilder();
+            Shape[] sh = {
+                new Triangle(1,2,3),
+                new Circle(5),
+                new Triangle(5,6,8)
+            };
+
+            foreach (Shape item in sh)
+            {
+                str.AppendFormat("Это фигура {0}", item.Name + "<p>");
+            }
+
+            return str.ToString();
+        }
+
+        public string ExeCollection()
+        {
+            List<Circle> cirs = new List<Circle>
+            {
+                new Circle(12), 
+                new Circle(5), 
+                new Circle(15), 
+                new Circle(6) 
+            };
+
+            cirs.Add(new Circle(7));
+            cirs.Sort();
+
+            StringBuilder str = new StringBuilder();
+            foreach (Shape item in cirs)
+            {
+                str.AppendFormat("Это фигура {0}", item.Name + "<p>");
+            }
+            return str.ToString();
         }
     }
 }
