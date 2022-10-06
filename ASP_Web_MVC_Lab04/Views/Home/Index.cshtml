@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = "~/Views/Home/_BasicLayout.cshtml";
+    ViewBag.Title = "Главная";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @ViewBag.Greeting, спасибо, что зашли
+        <p>
+            @Html.ActionLink("Введите имя", "InputData")
+        </p>
+        <p>
+            @Html.ActionLink("Посмотрите, кто уже здесь", "OutputData")
+        </p>
+    </div>
+</body>
+</html>
