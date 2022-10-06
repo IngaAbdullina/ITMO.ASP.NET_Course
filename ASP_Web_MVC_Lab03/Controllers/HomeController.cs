@@ -28,7 +28,7 @@ namespace ASP_Web_MVC.Controllers
         public ViewResult InputData(Person p)
         {
             db.AddResponse(p);
-            return View("Hello ", p);
+            return View("Hello", p);
         }
 
         public ViewResult OutputData()
