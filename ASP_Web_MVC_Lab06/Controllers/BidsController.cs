@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using MvcCreditApp1.Models;
 
 namespace MvcCreditApp1.Controllers
@@ -14,13 +11,12 @@ namespace MvcCreditApp1.Controllers
     {
         private CreditContext db = new CreditContext();
 
-        // GET: Bids
+        [OutputCache(Duration = 60, Location = OutputCacheLocation.ServerAndClient)]
         public ActionResult Index()
         {
             return View(db.Bids.ToList());
         }
 
-        // GET: Bids/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
