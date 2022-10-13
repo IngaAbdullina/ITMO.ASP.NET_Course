@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Пять лучших студентов";
+}
+
+<h3>Ведомость успеваемости студентов (5 лучших студентов)</h3>
+<table class="table-bordered">
+    <tr>
+        <td><strong>Фамилия</strong></td>
+        <td><strong>Имя</strong></td>
+        <td><strong>Отчество</strong></td>
+        <td><strong>E-mail</strong> </td>
+        <td><strong>Суммарный балл</strong></td>
+    </tr>
+    @{
+        List<FinalTask.Models.Student> students = ViewBag.Students;
+        var orderBestStudents = from j in students
+                                orderby j.MathematicMark+j.PhisicMark+j.PhilosophyMark+j.ChemistryMark descending
+                                select new FinalTask.Models.Student
+                                {
+                                    LastName = j.LastName,
+                                    FirstName = j.FirstName,
+                                    Surname = j.Surname,
+                                    Email = j.Email,
+                                    MathematicMark = j.MathematicMark,
+                                    PhisicMark = j.PhisicMark,
+                                    PhilosophyMark = j.PhilosophyMark,
+                                    ChemistryMark = j.ChemistryMark
+                                };
+        IEnumerable<FinalTask.Models.Student> orderFiveBestStudents = orderBestStudents.Take(5);
+        foreach (var k in orderFiveBestStudents)
+        {
+            int i = k.MathematicMark + k.PhisicMark + k.PhilosophyMark + k.ChemistryMark;
+            <tr>
+                <td><p>@k.LastName</p></td>
+                <td><p>@k.FirstName</p></td>
+                <td><p>@k.Surname</p></td>
+                <td><p>@k.Email</p></td>
+                <td><p>@i</p></td>
+            </tr>
+        }
+    }
+</table>

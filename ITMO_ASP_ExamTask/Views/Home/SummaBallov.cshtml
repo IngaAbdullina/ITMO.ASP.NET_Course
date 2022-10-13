@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Сумма баллов";
+}
+
+<h3>Ведомость успеваемости студентов (сумма баллов)</h3>
+<table class="table-bordered">
+    <tr>
+        <td><strong>Фамилия</strong></td>
+        <td><strong>Имя</strong></td>
+        <td><strong>Отчество</strong></td>
+        <td><strong>E-mail</strong> </td>
+        <td><strong>Суммарный балл</strong></td>
+    </tr>
+    @foreach (var c in ViewBag.Students)
+    {
+        int i = c.MathematicMark + c.PhisicMark + c.PhilosophyMark + c.ChemistryMark;
+        <tr>
+            <td><p>@c.LastName</p></td>
+            <td><p>@c.FirstName</p></td>
+            <td><p>@c.Surname</p></td>
+            <td><p>@c.Email</p></td>
+            <td><p>@i</p></td>
+        </tr>
+    }
+</table>
