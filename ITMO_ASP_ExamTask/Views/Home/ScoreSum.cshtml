@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Сумма баллов";
+}
+
+<h3>Список студентов (сумма баллов)</h3>
+<table class="table-bordered">
+    <tr>
+        <td><strong>ФИО</strong></td>
+        <td><strong>Суммарный балл</strong></td>
+    </tr>
+    @foreach (var c in ViewBag.Students)
+    {
+        int i = c.CSDeveloping + c.JavaDeveloping;
+        <tr>
+            <td><p>@c.StudentName</p></td>
+            <td><p>@i</p></td>
+        </tr>
+    }
+</table>

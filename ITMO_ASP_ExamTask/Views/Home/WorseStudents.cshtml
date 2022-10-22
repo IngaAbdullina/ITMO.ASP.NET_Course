@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Пять студентов с минимальными баллами";
+}
+
+<h3>Список студентов (5 студентов с минимальными баллами)</h3>
+<table class="table-bordered">
+    <tr>
+        <td><strong>ФИО</strong></td>
+        <td><strong>Сумма баллов</strong></td>
+    </tr>
+    @{
+        List<FinalTask.Models.Student> students = ViewBag.Students;
+        var orderWorseStudents = from j in students
+                                orderby j.CSDeveloping + j.JavaDeveloping 
+                                select new FinalTask.Models.Student
+                                {
+                                    StudentName = j.StudentName,
+                                    CSDeveloping = j.CSDeveloping,
+                                    JavaDeveloping = j.JavaDeveloping
+                                };
+        IEnumerable<FinalTask.Models.Student> orderFiveWorseStudents = orderWorseStudents.Take(5);
+        foreach (var k in orderFiveWorseStudents)
+        {
+            int i = k.CSDeveloping + k.JavaDeveloping;
+            <tr>
+                <td><p>@k.StudentName</p></td>
+                <td><p>@i</p></td>
+            </tr>
+        }
+    }
+</table>
